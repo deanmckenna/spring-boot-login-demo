@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    platform: h2
+  thymeleaf:
+    cache: true
+  h2:
+    console:
+      enable: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO
+        type:
+          descriptor:
+            sql:
+              BasicBinder: INFO
+
+security:
+  redirect:
+    expose:
+      attributes: false

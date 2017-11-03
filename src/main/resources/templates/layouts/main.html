@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Login Demo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'/>
+    <link th:href="@{css/main.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="/home">Home</a>
+                <ul class="nav navbar-nav" th:each="option : ${options}">
+                    <li class="active"><a th:text="${option.name}" th:href="${option.path}"></a></li>
+                </ul>
+                <div class="navbar-text navbar-right">
+                    <span sec:authentication="name">Guest</span>
+                    <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post"
+                          class="form-inline"> <a href="javascript:{}"
+                             onclick="document.getElementById('frmlogout').submit(); return false;">Sign Out</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div layout:fragment="content">
+    </div>
+
+    <footer>
+        <p>Login Demo</p>
+    </footer>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

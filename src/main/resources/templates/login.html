@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorator="layouts/main">
+<head>
+    <title>Login Demo</title>
+    <link th:href="@{css/login.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <form name="form" th:action="@{/login}" method="post" class="login_form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <div th:if="${param.error}" class="alert alert-danger">
+            Invalid Login credentials.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+        </div>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="true"/>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+               required="true"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+
+</body>
+</html>
