@@ -6,22 +6,20 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 
-public class UserDetails implements org.springframework.security.core.userdetails.UserDetails{
+public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
     private final User user;
 
-    public UserDetails(User user){
+    public UserDetails(User user) {
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        user.getRoles().forEach(r -> grantedAuthorities.add(new SimpleGrantedAuthority(r.value())));
-
-        return grantedAuthorities;
+        return user.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.value())).collect(Collectors.toCollection(HashSet::new));
     }
 
     @Override
