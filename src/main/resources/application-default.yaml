@@ -2,7 +2,7 @@ spring:
   datasource:
     platform: h2
   thymeleaf:
-    cache: true
+    cache: false
   h2:
     console:
       enable: false
